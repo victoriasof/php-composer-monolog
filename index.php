@@ -42,37 +42,37 @@ $message = $_GET['message'];
 switch ($type){
 
     case 'INFO':
-        $log->pushHandler(new BrowserConsoleHandler( Logger:: INFO, true));
+        $log->pushHandler(new StreamHandler( __DIR__ . '/logs/info.log', Logger::INFO));
         $log->info($message);
         break;
 
     case 'DEBUG':
-        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/info/log', Logger::DEBUG));
+        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/info.log', Logger::DEBUG));
         $log->debug($message);
         break;
 
     case 'NOTICE':
-        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/info/log', Logger::NOTICE));
+        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/info.log', Logger::NOTICE));
         $log->notice($message);
         break;
 
     case 'WARNING':
-        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/warning/log', Logger::WARNING));
+        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/warning.log', Logger::WARNING));
         $log->warning($message);
         break;
 
     case 'ALERT':
-        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/warning/log', Logger::ALERT));
+        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/warning.log', Logger::ALERT));
         $log->alert($message);
         break;
 
     case 'ERROR':
-        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/warning/log', Logger::ERROR));
+        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/warning.log', Logger::ERROR));
         $log->error($message);
         break;
 
     case 'CRITICAL':
-        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/warning/log', Logger::CRITICAL));
+        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/warning.log', Logger::CRITICAL));
         $log->critical($message);
         break;
 

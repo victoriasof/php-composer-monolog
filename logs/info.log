@@ -1,0 +1,4 @@
+[2020-11-05T15:28:55.028206+01:00] BrowserConsoleHandler.INFO: hohoho [] []
+[2020-11-05T15:28:55.029161+01:00] BrowserConsoleHandler.INFO: hohoho [] []
+[2020-11-05T15:28:55.029340+01:00] BrowserConsoleHandler.WARNING: Foo [] []
+[2020-11-05T15:28:55.029523+01:00] BrowserConsoleHandler.ERROR: Bar [] []
