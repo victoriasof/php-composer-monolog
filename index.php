@@ -28,13 +28,49 @@ require 'buttons.html';
 
 
 use Monolog\Logger;
+use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Handler\StreamHandler;
 
 // create a log channel
-$log = new Logger('name');
-$log->pushHandler(new StreamHandler('path/to/your.log', Logger::WARNING));
+$log = new Logger('BrowserConsoleHandler');
+//$log->pushHandler(new BrowserConsoleHandler('logs/warning.log', Logger::WARNING));
+$log->pushHandler(new BrowserConsoleHandler);
+$type = $_GET['type'];
+$message = $_GET['message'];
+
+switch ($type){
+    case 'WARNING':
+        $log->pushHandler(new StreamHandler(__DIR__ . '/logs/warning/log', Logger::WARNING));
+        $log->warning($message);
+        break;
+
+    case 'INFO':
+        $log->pushHandler(new StreamHandler( __DIR__ . '/logs/info.log', Logger:: INFO));
+        $log->info($message);
+        break;
+
+    case 'EMERGENCY':
+        $log->pushHandler(new StreamHandler( __DIR__ . '/log/emergency.log', Logger:: EMERGENCY));
+        $log->emergency($message);
+        break;
+
+}
+
+$log->$type($message);
 
 // add records to the log
 $log->warning('Foo');
 $log->error('Bar');
 
+/*
+Use the buttons.html page to submit log messages and write the message in a log file.
+
+Write each color of buttons to a different file:
+
+    info: info.log and send the messages to browser console using BrowserConsoleHandler
+    warning: warning.log
+    danger: warning.log and email these messages using NativeMailerHandler
+    dark: emergency.log and email these messages using NativeMailerHandler
+
+You do not need to use an if to get the messages written in different files
+*/
